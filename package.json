@@ -1,0 +1,29 @@
+{
+  "name": "3-api-rest",
+  "version": "1.0.0",
+  "description": "API REST y problema con el CORS",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node --watch app.js",
+    "web": "npx servor ./web"
+  },
+  "keywords": [
+    "api-rest",
+    "curso",
+    "cors"
+  ],
+  "author": "Diego Ruiz",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "2.8.5",
+    "express": "4.18.2",
+    "zod": "3.22.4"
+  },
+  "devDependencies": {
+    "standard": "17.1.0"
+  },
+  "eslintConfig": {
+    "extends": "standard"
+  }
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style>
+    body {
+      background-color: #212126;
+      color: white;
+      font-family: system-ui;
+    }
+
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    article {
+      border: 1px solid white;
+      padding: 1rem;
+      max-width: 200px;
+      display: grid;
+      place-content: center;
+    }
+
+    article img {
+      width: 100%;
+    }
+  </style>
+  <script>
+    fetch('http://localhost:3030/movies')
+      .then(res => res.json())
+      .then(movies => {
+        const moviesHTML = movies.map(movie => `
+          <article>
+            <h2>${movie.title}</h2>
+            <p>${movie.year} - ${movie.duration} -⭐${movie.rate}</p>
+            <img src=${movie.poster} />
+            <button id=${movie.id}>Eliminar</button>
+          </article>
+        `).join('')
+
+        document.querySelector('main').innerHTML = moviesHTML
+        document.addEventListener('click', e => {
+          if (!e.target.matches('button')) return
+
+          const { id } = e.target
+          fetch('http://localhost:3030/movies/' + id, { method: 'DELETE' })
+            .then(res => {
+              if (!res.ok) throw new Error('No se pudo eliminar :(')
+
+              const article = e.target.closest('article')
+              article.remove()
+            })
+            .catch(ex => console.log(ex.message))
+        })
+      })
+
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REST Api</title>
+</head>
+
+<body>
+  <header>
+    <h1>Movies</h1>
+  </header>
+  <hr style="margin: 1rem 0" />
+  <main></main>
+</body>
+
+</html>

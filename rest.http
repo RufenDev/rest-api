@@ -1,0 +1,32 @@
+### Obtener la lista de películas
+GET http://localhost:3030/movies
+
+### Obtener una película por ID
+GET http://localhost:3030/movies/1
+
+### Obtener películas por género
+GET http://localhost:3030/movies?genre=drama
+
+### Crear una película
+POST http://localhost:3030/movies
+Content-Type: application/json
+
+{
+  "asdbb": "sdjfhsdfghh",
+  "title": "The Whale",
+  "year": 2022,
+  "director": "Darren Aronofsky",
+  "duration": 117,
+  "poster": "https://www.cinemaclock.com/images/posters/1000x1500/91/the-whale-2022-poster.jpg",
+  "genre": ["Drama"]
+}
+
+### Actualizar una película con PATCH
+PATCH http://localhost:3030/movies/ccf36f2e-8566-47f7-912d-9f4647250bc7
+Content-Type: application/json
+
+{
+  "id": "SELECT",
+  "year": 1999,
+  "title": "Tetanic"
+}
